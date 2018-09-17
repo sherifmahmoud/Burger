@@ -6,17 +6,11 @@ const router = express.Router();
 router.get("/", function (req, res) {
     console.log('GET burgers html request received');
     burger.all(function (data) {
-        var burgers=data;
+        var burgers = data;
         res.render("index", { burgers });
     });
 });
 
-router.get("/api/burger", function (req, res) {
-    console.log('GET burgers data request received');
-    burger.all(function (data) {
-        res.json(data);
-    });
-});
 router.post("/", function (req, res) {
     console.log('POST burgers api request received');
     console.log(`req.body.name=${req.body.name}`);
@@ -28,7 +22,7 @@ router.post("/", function (req, res) {
 });
 
 router.put("/", function (req, res) {
-    console.log('PUT burgers api request received');
+    console.log('PUT request received');
     var burger_id = req.body.id;
     burger.update({ devoured: 1 }, `id=${burger_id}`, function (result) {
         if (result.changedRows == 0) {
