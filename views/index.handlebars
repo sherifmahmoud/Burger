@@ -4,12 +4,17 @@
             <h3>Undevoured Burgers</h3>
         </div>
         <ol id="undevouredList">
-
+            {{#each burgers }}
+            {{#if devoured}}
+            {{else}}
+            <li>{{burger_name}}<button class="devour" data-id="{{id}}">Devour!</button></li>
+            {{/if}}
+            {{/each}}
         </ol>
     </div>
     <div id="form" class="section">
         <img src='assets/img/Hamburger-PNG-Image.png'>
-        <form action="/api/burgers" method="POST">
+        <form action="/" method="POST">
             <input id="name" name="name" type="text">
             <input type="submit" class="btn btn-primary btn-block" value="Add Burger">
         </form>
@@ -19,9 +24,14 @@
             <h3>Devoured Burgers</h3>
         </div>
         <ol id="devouredList">
-
+            {{#each burgers }}
+            {{#if devoured}}
+            <li>{{burger_name}}</li>
+            {{/if}}
+            {{/each}}
         </ol>
     </div>
-
-
 </div>
+<footer>
+    |<a href='https://github.com/sherifmahmoud/Burger'>🐱GitHub Repo</a>
+</footer>

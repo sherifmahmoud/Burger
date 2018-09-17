@@ -6,17 +6,18 @@ const router = express.Router();
 router.get("/", function (req, res) {
     console.log('GET burgers html request received');
     burger.all(function (data) {
-        res.render("index", data);
+        var burgers=data;
+        res.render("index", { burgers });
     });
 });
 
-router.get("/api/burgers", function (req, res) {
+router.get("/api/burger", function (req, res) {
+    console.log('GET burgers data request received');
     burger.all(function (data) {
-        return res.json(data);
+        res.json(data);
     });
 });
-
-router.post("/api/burgers", function (req, res) {
+router.post("/", function (req, res) {
     console.log('POST burgers api request received');
     console.log(`req.body.name=${req.body.name}`);
     burger.create(['burger_name'], [req.body.name], function (data) {
@@ -26,15 +27,15 @@ router.post("/api/burgers", function (req, res) {
     });
 });
 
-router.put("/api/burgers/:id", function (req, res) {
+router.put("/", function (req, res) {
     console.log('PUT burgers api request received');
-    var burger_id = req.params.id;
+    var burger_id = req.body.id;
     burger.update({ devoured: 1 }, `id=${burger_id}`, function (result) {
         if (result.changedRows == 0) {
             // If no rows were changed, then the ID must not exist, so 404
             return res.status(404).end();
         } else {
-            res.redirect('/');
+            res.redirect(303, '/');
         }
     });
 
