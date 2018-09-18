@@ -1,12 +1,12 @@
 INSERT INTO burgers
     (burger_name, devoured)
 VALUES
-    ('Quarter Pounder with Cheese', 0);
+    ('Quarter Pounder', 0);
 INSERT INTO burgers
     (burger_name, devoured)
 VALUES
-    ('Bacon Smokehouse Burger', 1);
+    ('Smokehouse Burger', 1);
 INSERT INTO burgers
     (burger_name, devoured)
 VALUES
-    ('The beefy Triple Cheeseburger', 0);
+    ('Triple Cheeseburger', 0);
